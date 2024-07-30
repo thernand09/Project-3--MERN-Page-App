@@ -1,1 +1,1 @@
-# Project-3--MERN-Page-App
+# Project-3-Recipe-Blog
