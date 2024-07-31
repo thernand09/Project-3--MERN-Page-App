@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const blogPostSchema = new mongoose.Schema({
+const reviewSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
@@ -19,7 +19,8 @@ const blogPostSchema = new mongoose.Schema({
   },
   recipe: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Recipe'
+    ref: 'Recipe',
+    required: true
   },
   createdAt: {
     type: Date,
@@ -27,6 +28,6 @@ const blogPostSchema = new mongoose.Schema({
   }
 });
 
-const BlogPost = mongoose.model('BlogPost', blogPostSchema);
+const Review = mongoose.model('Review', reviewSchema);
 
-module.exports = BlogPost;
+module.exports = Review;
