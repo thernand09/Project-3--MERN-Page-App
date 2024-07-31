@@ -25,10 +25,10 @@ const recipeSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   },
-  blogPosts: [
+  review: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'BlogPost'
+      ref: 'Review'
     }
   ]
 });
