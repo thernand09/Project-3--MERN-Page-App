@@ -3,4 +3,4 @@ const Review = require('./Review');
 const Recipe = require('./Recipe');
 
 
-module.exports = {User, BlogPost, Recipe};
+module.exports = {User, Review, Recipe};
