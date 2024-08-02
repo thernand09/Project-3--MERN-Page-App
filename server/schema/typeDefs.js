@@ -28,12 +28,23 @@ user: User
 review: Review
 }
 
+type Auth {
+    token: ID!
+    user: User
+  }
+
 type Query {
 users: [User]
 user: User
 favoriteRecipes: Recipe
 reviews: [Review]
 recipes: [Recipe]
+}
+
+type Mutation {
+addUser(username: String!, email: String!, password: String!): Auth
+login(email: String!, password: String!):Auth
+addReview(recipeId: ID!, reviewText: String!, rating: Int): Review
 }
 `;
 

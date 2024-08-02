@@ -7,7 +7,7 @@ const fetch = require('node-fetch');
 
 const fetchRecipes = async (query) => {
   const apiKey = process.env.SPOONACULAR_API_KEY;
-  const apiUrl = `https://api.spoonacular.com/recipes/complexSearch?query=${query}&apiKey=${apiKey}&number=10`;
+  const apiUrl = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}`;
 
   try {
     console.log(`Fetching recipes from API: ${apiUrl}`);
@@ -40,40 +40,40 @@ const resolvers = {
       return Review.find({ recipeId });
     }
   },
-  // Mutation: {
-  //   addUser: async (parent, { username, email, password }) => {
-  //     const user = await User.create({ username, email, password });
-  //     const token = signToken(user);
-  //     return { token, user };
-  //   },
-  //   login: async (parent, { email, password }) => {
-  //     const user = await User.findOne({ email });
-  //     if (!user) {
-  //       throw new AuthenticationError('Incorrect credentials');
-  //     }
+  Mutation: {
+    addUser: async (parent, { username, email, password }) => {
+      const user = await User.create({ username, email, password });
+      const token = signToken(user);
+      return { token, user };
+    },
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
+      if (!user) {
+        throw new AuthenticationError('Incorrect credentials');
+      }
 
-  //     const correctPw = await user.isCorrectPassword(password);
-  //     if (!correctPw) {
-  //       throw new AuthenticationError('Incorrect credentials');
-  //     }
+      const correctPw = await user.isCorrectPassword(password);
+      if (!correctPw) {
+        throw new AuthenticationError('Incorrect credentials');
+      }
 
-  //     const token = signToken(user);
-  //     return { token, user };
-  //   },
-  //   addReview: async (parent, { recipeId, reviewText, rating }, context) => {
-  //     if (context.user) {
-  //       const review = await Review.create({
-  //         recipeId,
-  //         reviewText,
-  //         rating,
-  //         username: context.user.username
-  //       });
+      const token = signToken(user);
+      return { token, user };
+    },
+    addReview: async (parent, { recipeId, reviewText, rating }, context) => {
+      if (context.user) {
+        const review = await Review.create({
+          recipeId,
+          reviewText,
+          rating,
+          username: context.user.username
+        });
 
-  //       return review;
-  //     }
-  //     throw new AuthenticationError('Not logged in');
-  //   }
-  // }
+        return review;
+      }
+      throw new AuthenticationError('Not logged in');
+    }
+  }
 };
 
 module.exports = resolvers;
