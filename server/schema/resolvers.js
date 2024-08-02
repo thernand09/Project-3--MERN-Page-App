@@ -5,8 +5,19 @@ const fetch = require('node-fetch');
 
 require('dotenv').config();
 
-// const apiKey = process.env.API_KEY_SPOON;
-// const apiUrl = 'https://api.spoonacular.com/recipes/complexSearch';
+const SpoonacularApi = require('spoonacular-api-client');
+
+// Create an instance of the API client
+const defaultClient = SpoonacularApi.ApiClient.instance;
+
+// Configure API key authorization
+const apiKeyScheme = defaultClient.authentications['apiKeyScheme'];
+apiKeyScheme.apiKey = process.env.SPOONACULAR_API_KEY; // Use environment variable to store your API key
+
+// Uncomment the following line to set a prefix for the API key, e.g., "Token" (defaults to null)
+apiKeyScheme.apiKeyPrefix = 'Token';
+
+const api = new SpoonacularApi.DefaultApi();
 
 const resolvers = {
     Query: {
@@ -19,14 +30,6 @@ const resolvers = {
           const response = await fetch (apiUrl);
           const data = await response.json();
           return data.results;
-        },
-        // Fetch favorite recipes for the logged-in user
-        favoriteRecipes: async (parent, args, context) => {
-          if (context.user) {
-            const user = await User.findById(context.user._id).populate('favorites');
-            return user.favorites;
-          }
-          throw new AuthenticationError('Not logged in');
         },
         // Fetch reviews for a specific recipe
         reviews: async (parent, { recipeId }) => {
@@ -55,17 +58,6 @@ const resolvers = {
           const token = signToken(user);
           return { token, user };
         },
-        // Add a recipe to favorites
-        favoriteRecipe: async (parent, { recipeId }, context) => {
-          if (context.user) {
-            const user = await User.findById(context.user._id);
-            user.favorites.push(recipeId);
-            await user.save();
-            return user;
-          }
-          throw new AuthenticationError('Not logged in');
-        },
-        // Add a review to a recipe
         addReview: async (parent, { title, content }, context) => {
           if (context.user) {
             const review = await Review.create({

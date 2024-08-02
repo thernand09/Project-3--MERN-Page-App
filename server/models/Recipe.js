@@ -3,23 +3,22 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const recipeSchema = new mongoose.Schema({
-  label: {
-    type: String,
-    required: true
-  },
-  uri: {
-    type: String,
+  id: {
+    type: Number,
     required: true,
-    unique: true
+  },
+  title: {
+    type: String,
   },
   image: {
-    type: String
+    type: String,
+    required: true,
   },
-  source: {
-    type: String
+  sourceName: {
+    type: String,
   },
-  url: {
-    type: String
+  sourceURL: {
+    type: String,
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
