@@ -5,19 +5,23 @@ const fetch = require('node-fetch');
 
 require('dotenv').config();
 
-const SpoonacularApi = require('spoonacular-api-client');
+const fetchRecipes = async (query) => {
+  const apiKey = process.env.SPOONACULAR_API_KEY;
+  const apiUrl = `https://api.spoonacular.com/recipes/complexSearch?query=${query}&apiKey=${apiKey}&number=10`;
 
-// Create an instance of the API client
-const defaultClient = SpoonacularApi.ApiClient.instance;
+  try {
+    const response = await fetch(apiUrl);
+    if (!response.ok) {
+      throw new Error(`Error fetching recipes: ${response.statusText}`);
+    }
+    const data = await response.json();
+    return data.results;
+  } catch (error) {
+    console.error(error);
+    throw new Error('Failed to fetch recipes');
+  }
+};
 
-// Configure API key authorization
-const apiKeyScheme = defaultClient.authentications['apiKeyScheme'];
-apiKeyScheme.apiKey = process.env.SPOONACULAR_API_KEY; // Use environment variable to store your API key
-
-// Uncomment the following line to set a prefix for the API key, e.g., "Token" (defaults to null)
-apiKeyScheme.apiKeyPrefix = 'Token';
-
-const api = new SpoonacularApi.DefaultApi();
 
 const resolvers = {
     Query: {
@@ -26,51 +30,49 @@ const resolvers = {
           return User.findById(id);
         },
         // Fetch all recipes from an external API
-        recipes: async () => {
-          const response = await fetch (apiUrl);
-          const data = await response.json();
-          return data.results;
+        recipes: async (parent, {query}) => {
+          return fetchRecipes(query)
         },
         // Fetch reviews for a specific recipe
         reviews: async (parent, { recipeId }) => {
           return Review.find({ recipeId });
         }
       },
-      Mutation: {
-        // User sign-up
-        addUser: async (parent, { username, email, password }) => {
-          const user = await User.create({ username, email, password });
-          const token = signToken(user);
-          return { token, user };
-        },
-        // User login
-        login: async (parent, { email, password }) => {
-          const user = await User.findOne({ email });
-          if (!user) {
-            throw new AuthenticationError('Incorrect credentials');
-          }
+      // Mutation: {
+      //   // User sign-up
+      //   addUser: async (parent, { username, email, password }) => {
+      //     const user = await User.create({ username, email, password });
+      //     const token = signToken(user);
+      //     return { token, user };
+      //   },
+      //   // User login
+      //   login: async (parent, { email, password }) => {
+      //     const user = await User.findOne({ email });
+      //     if (!user) {
+      //       throw new AuthenticationError('Incorrect credentials');
+      //     }
     
-          const correctPw = await user.isCorrectPassword(password);
-          if (!correctPw) {
-            throw new AuthenticationError('Incorrect credentials');
-          }
+      //     const correctPw = await user.isCorrectPassword(password);
+      //     if (!correctPw) {
+      //       throw new AuthenticationError('Incorrect credentials');
+      //     }
     
-          const token = signToken(user);
-          return { token, user };
-        },
-        addReview: async (parent, { title, content }, context) => {
-          if (context.user) {
-            const review = await Review.create({
-              title,
-              content,
-              author: context.user._id,
-            });
+      //     const token = signToken(user);
+      //     return { token, user };
+      //   },
+      //   addReview: async (parent, { title, content }, context) => {
+      //     if (context.user) {
+      //       const review = await Review.create({
+      //         title,
+      //         content,
+      //         author: context.user._id,
+      //       });
     
-            return review;
-          }
-          throw new AuthenticationError('Not logged in');
-        }
-      }
+      //       return review;
+      //     }
+      //     throw new AuthenticationError('Not logged in');
+      //   }
+      // }
     };
 
 module.exports = resolvers;

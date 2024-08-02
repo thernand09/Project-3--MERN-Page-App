@@ -18,6 +18,8 @@
         "concurrently": "^8.2.0"
     },
     "dependencies": {
-        "dotenv": "^16.4.5"
+        "dotenv": "^16.4.5",
+        "node-fetch": "^3.3.2",
+        "spoonacular": "^2.0.1"
     }
 }
