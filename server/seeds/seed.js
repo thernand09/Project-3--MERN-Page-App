@@ -18,7 +18,7 @@ db.once('open', async () => {
 db.once('open', async () => {
     await cleanDB('Review', 'reviews');
   
-    await User.insertMany(reviewData);
+    await Review.insertMany(reviewData);
   
     console.log('Review data seeded!');
     process.exit(0);
@@ -27,7 +27,7 @@ db.once('open', async () => {
   db.once('open', async () => {
     await cleanDB('Recipe', 'recipes');
   
-    await User.insertMany(recipeData);
+    await Recipe.insertMany(recipeData);
   
     console.log('Recipe data seeded!');
     process.exit(0);
