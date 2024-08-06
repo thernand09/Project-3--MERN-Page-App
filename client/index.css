@@ -46,7 +46,7 @@ body {
     grid-area: nav;
     background-color: rgb(146, 19, 19);
     padding: 20px;
-    border-right: 1px solid #ccc;
+    border-right: 4px solid #ccc;
     
 }
 
@@ -64,7 +64,7 @@ body {
     font-size: 1em;
     cursor: pointer;
     background-color: #ddd;
-    border: none;
+    border: 3px;
     text-align: left;
 }
 
