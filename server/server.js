@@ -23,6 +23,9 @@ const startApolloServer = async () => {
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
 
+  // Use the recipe routes
+  app.use('/api', recipeRoutes);
+
   app.use('/graphql', expressMiddleware(server, {
     context: authMiddleware
   }));
