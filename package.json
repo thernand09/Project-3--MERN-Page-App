@@ -20,6 +20,7 @@
     "dependencies": {
         "dotenv": "^16.4.5",
         "node-fetch": "^3.3.2",
-        "spoonacular": "^2.0.1"
+        "spoonacular": "^2.0.1",
+        "styled-components": "^6.1.12"
     }
 }
