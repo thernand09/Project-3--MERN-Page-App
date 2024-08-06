@@ -7,8 +7,8 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
-import Nav from './components/Nav';
-import { StoreProvider } from './utils/GlobalState';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -30,14 +30,15 @@ const client = new ApolloClient({
 });
 
 function App() {
-//   return (
-//     // <ApolloProvider client={client}>
-//     //   <StoreProvider>
-//     //     <Nav />
-//     //     <Outlet />
-//     //   </StoreProvider>
-//     // </ApolloProvider>
-//   );
+<ApolloProvider client={client}>
+      <div className="">
+        <Header />
+        <div className="container">
+          <Outlet />
+        </div>
+        <Footer />
+      </div>
+    </ApolloProvider>
 }
 
 export default App;
