@@ -36,7 +36,6 @@ type Auth {
 type Query {
 users: [User]
 user: User
-favoriteRecipes: Recipe
 reviews: [Review]
 recipes: [Recipe]
 }
