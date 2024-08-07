@@ -9,6 +9,7 @@ const { authMiddleware } = require('./utils/auth');
 
 const { typeDefs, resolvers } = require('./schema');
 const db = require('./config/connection');
+const recipeRoutes = require('./routes/recipeRoutes');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
