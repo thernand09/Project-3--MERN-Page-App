@@ -8,8 +8,7 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import SearchResults from './pages/SearchResults';
 import RecipePage from './pages/RecipePage';
-import 'bootstrap/dist/css/bootstrap.min.css';
-
+import 'styled-components/native'
 
 const router = createBrowserRouter([
   {
