@@ -4,12 +4,11 @@ const express = require('express');
 const { ApolloServer } = require('@apollo/server');
 const { expressMiddleware } = require('@apollo/server/express4');
 const path = require('path');
-const recipeRoutes = require('./routes/recipeRoutes');
 const { authMiddleware } = require('./utils/auth');
 
 const { typeDefs, resolvers } = require('./schema');
 const db = require('./config/connection');
-const recipeRoutes = require('./routes/recipeRoutes');
+const recipeRoutes = require('./routes/recipeRoutes'); // Only declare this once
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -49,4 +48,4 @@ const startApolloServer = async () => {
 };
 
 // Call the async function to start the server
-  startApolloServer();
+startApolloServer();

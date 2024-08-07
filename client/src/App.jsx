@@ -1,3 +1,4 @@
+import React from 'react';
 import { Outlet } from 'react-router-dom';
 import {
   ApolloClient,
@@ -6,7 +7,6 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -31,8 +31,9 @@ const client = new ApolloClient({
 });
 
 function App() {
-<ApolloProvider client={client}>
-      <div className="">
+  return (
+    <ApolloProvider client={client}>
+      <div>
         <Header />
         <div className="container">
           <Outlet />
@@ -40,6 +41,7 @@ function App() {
         <Footer />
       </div>
     </ApolloProvider>
+  );
 }
 
 export default App;
