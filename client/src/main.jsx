@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import SearchResults from './pages/SearchResults';
 import RecipePage from './pages/RecipePage';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/index.css';
 
 const router = createBrowserRouter ([
@@ -33,6 +34,14 @@ const router = createBrowserRouter ([
         ]
     }
 ]);
+
+ReactDOM.render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>,
+    document.getElementById('root')
+  );
+  
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <RouterProvider router={router} />
