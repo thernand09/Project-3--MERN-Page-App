@@ -1,6 +1,6 @@
 // server/routes/recipeRoutes.js
 const express = require('express');
-const { searchRecipes, fetchRecipe } = require('../resolvers');
+const { searchRecipes, fetchRecipe } = require('../schema/resolvers');
 const router = express.Router();
 
 // Route to handle search requests
