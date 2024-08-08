@@ -1,6 +1,7 @@
-// this will contain the components to format each review that will display underneath the recipe on RecipePage// client/src/components/Review.jsx
+// client/src/components/Review.jsx
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const ReviewContainer = styled.div`
   border: 1px solid #e7e7e7;
@@ -22,13 +23,31 @@ const ReviewText = styled.p`
   color: #6c757d;
 `;
 
+const ReviewRating = styled.div`
+  font-size: 1rem;
+  color: #ffc107; // Gold color for star ratings
+  margin-bottom: 0.5rem;
+`;
+
 const Review = ({ review }) => {
   return (
     <ReviewContainer>
-      <ReviewAuthor>{review.author}</ReviewAuthor>
-      <ReviewText>{review.text}</ReviewText>
+      <ReviewRating>
+        {'★'.repeat(review.rating)}{'☆'.repeat(5 - review.rating)}
+      </ReviewRating>
+      <ReviewAuthor>{review.author || 'Anonymous'}</ReviewAuthor>
+      <ReviewText>{review.text || 'No review text provided.'}</ReviewText>
     </ReviewContainer>
   );
 };
 
+Review.propTypes = {
+  review: PropTypes.shape({
+    author: PropTypes.string,
+    text: PropTypes.string,
+    rating: PropTypes.number.isRequired, // Ensure rating is a number and required
+  }).isRequired,
+};
+
 export default Review;
+

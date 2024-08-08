@@ -2,6 +2,7 @@
 //client/src/components/Recipe.jsx
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const RecipeContainer = styled.div`
   border: 1px solid #e7e7e7;
@@ -31,13 +32,26 @@ const RecipeDescription = styled.p`
 `;
 
 const Recipe = ({ recipe }) => {
+  if (!recipe) {
+    return <p>No recipe data available.</p>;
+  }
+
   return (
     <RecipeContainer>
-      <RecipeTitle>{recipe.title}</RecipeTitle>
-      <RecipeImage src={recipe.image} alt={recipe.title} />
-      <RecipeDescription>{recipe.description}</RecipeDescription>
+      <RecipeTitle>{recipe.title || 'No title available'}</RecipeTitle>
+      <RecipeImage src={recipe.image || 'default-image-url.jpg'} alt={recipe.title || 'Recipe image'} />
+      <RecipeDescription>{recipe.description || 'No description available.'}</RecipeDescription>
     </RecipeContainer>
   );
 };
 
+Recipe.propTypes = {
+  recipe: PropTypes.shape({
+    title: PropTypes.string,
+    image: PropTypes.string,
+    description: PropTypes.string,
+  }).isRequired,
+};
+
 export default Recipe;
+

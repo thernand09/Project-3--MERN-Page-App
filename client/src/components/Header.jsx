@@ -1,6 +1,8 @@
 //client/src/components/Header.jsx
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import Auth from '../utils/auth';
 
 const HeaderContainer = styled.header`
   background-color: #343a40;
@@ -30,17 +32,26 @@ const Nav = styled.nav`
 `;
 
 const Header = () => {
+  const loggedIn = Auth.loggedIn();
+
   return (
     <HeaderContainer>
       <Heading>Recipe Review Blog</Heading>
       <Nav>
-        <a href="/">Home</a>
-        <a href="/search">Search</a>
-        <a href="/login">Login</a>
-        <a href="/signup">Sign Up</a>
+        <Link to="/">Home</Link>
+        <Link to="/search">Search</Link>
+        {!loggedIn ? (
+          <>
+            <Link to="/login">Login</Link>
+            <Link to="/signup">Sign Up</Link>
+          </>
+        ) : (
+          <Link to="/profile">Profile</Link>
+        )}
       </Nav>
     </HeaderContainer>
   );
 };
 
 export default Header;
+
