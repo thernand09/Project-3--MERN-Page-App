@@ -1,6 +1,7 @@
-// client/src/components/ReviewForm.jsx
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useMutation } from '@apollo/client';
+import { ADD_REVIEW } from '../utils/mutation';
 
 const Form = styled.form`
   display: flex;
@@ -39,15 +40,23 @@ const Button = styled.button`
   }
 `;
 
-const ReviewForm = ({ onSubmit }) => {
+const ReviewForm = ({ recipeId, onReviewAdded }) => {
   const [author, setAuthor] = useState('');
   const [text, setText] = useState('');
+  const [addReview, { error }] = useMutation(ADD_REVIEW);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onSubmit({ author, text });
-    setAuthor('');
-    setText('');
+    try {
+      const { data } = await addReview({
+        variables: { recipeId, reviewText: text, rating: 5 }, // Adjust rating as needed
+      });
+      onReviewAdded(data.addReview); // Notify parent component
+      setAuthor('');
+      setText('');
+    } catch (err) {
+      console.error('Error adding review:', err);
+    }
   };
 
   return (
@@ -66,6 +75,7 @@ const ReviewForm = ({ onSubmit }) => {
         required
       />
       <Button type="submit">Submit Review</Button>
+      {error && <p>Error: {error.message}</p>}
     </Form>
   );
 };

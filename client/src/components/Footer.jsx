@@ -1,5 +1,6 @@
 // client/src/components/Footer.jsx
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const FooterContainer = styled.footer`
@@ -33,13 +34,14 @@ const Footer = () => {
     <FooterContainer>
       <FooterText>&copy; 2024 Recipe Review Blog. All rights reserved.</FooterText>
       <Nav>
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/contact">Contact</a>
+        <Link to="/">Home</Link>
+        <Link to="/about">About</Link>
+        <Link to="/contact">Contact</Link>
       </Nav>
     </FooterContainer>
   );
 };
 
 export default Footer;
+
 

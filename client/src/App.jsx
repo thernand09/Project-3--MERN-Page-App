@@ -1,4 +1,3 @@
-import './styles'
 import React from 'react';
 import {
   ApolloClient,
