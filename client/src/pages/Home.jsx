@@ -30,19 +30,19 @@ const ProfileInfo = styled.div`
 const Home = () => {
   const navigate = useNavigate();
   const loggedIn = Auth.loggedIn();
-
+console.log('logged in', loggedIn);
   // Use GET_USER query to fetch the logged-in user's data
   const { data, loading, error } = useQuery(GET_USER, {
     skip: !loggedIn, // Skip query if not logged in
-    variables: { id: Auth.getProfile().data._id }, // Get the user's ID from the JWT
+    variables: { id: loggedIn ? Auth.getProfile().data?._id : ''}, // Get the user's ID from the JWT
   });
-
+  console.log('hello');
   const handleSearch = (query) => {
     navigate(`/search?query=${encodeURIComponent(query)}`);
   };
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error loading user data.</p>;
+  // if (loading) return <p>Loading...</p>;
+  // if (error) return <p>Error loading user data.</p>;
 
   return (
     <HomeContainer>
