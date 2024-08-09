@@ -137,4 +137,4 @@ This project is licensed under the MIT License.
 
 Project Credits:
 Danny Kramer | Tati Hernandez | Amber Gandar
-
+You can view the presentation slides for our project [here.](https://docs.google.com/presentation/d/145ffR7ZpRK_NBFwOwhe2Vlqf7BO4XFgK1oe5ps-pivk/edit?usp=sharing)
