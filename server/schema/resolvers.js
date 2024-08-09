@@ -42,7 +42,12 @@ const fetchRecipes = async (query) => {
 const resolvers = {
   Query: {
     user: async (parent, { id }) => {
-      return User.findById(id);
+      console.log(id);
+      if (id){
+        return User.findById(id);
+      } 
+      return null
+
     },
     recipes: async (parent, { query }) => {
       return fetchRecipes(query);

@@ -1,10 +1,12 @@
 import decode from 'jwt-decode';
-const token = 'your-jwt-token-here';
-console.log(decode(token));
+// const token = 'your-jwt-token-here';
+// console.log(decode(token));
 
 class AuthService {
   getProfile() {
-    return decode(this.getToken());
+    if (this.getToken()){
+      return decode(this.getToken());
+    }
   }
 
   loggedIn() {
