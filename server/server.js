@@ -10,7 +10,7 @@ const { typeDefs, resolvers } = require('./schema');
 const db = require('./config/connection');
 const recipeRoutes = require('./routes/recipeRoutes'); // Only declare this once
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 const app = express();
 const server = new ApolloServer({
   typeDefs,

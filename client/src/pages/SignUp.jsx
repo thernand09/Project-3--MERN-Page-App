@@ -87,6 +87,22 @@ const Signup = () => {
         <h2>Sign Up</h2>
         <Input
           type="text"
+          name="first name"
+          value={formState.fisrtName}
+          onChange={handleChange}
+          placeholder="First Name"
+          required
+        />
+        <Input
+          type="text"
+          name="last name"
+          value={formState.lastName}
+          onChange={handleChange}
+          placeholder="Last Name"
+          required
+        />
+        <Input
+          type="text"
           name="username"
           value={formState.username}
           onChange={handleChange}
