@@ -5,13 +5,13 @@ import { GET_RECIPES } from '../utils/queries';
 
 const SearchResults = () => {
   const query = new URLSearchParams(useLocation().search).get('query');
-
-  // Use the GET_RECIPES query to fetch recipes based on the search query
+console.log(query);
+// Use the GET_RECIPES query to fetch recipes based on the search query
   const { loading, error, data } = useQuery(GET_RECIPES, {
     variables: { query },
     skip: !query, // Skip the query if no search query is provided
   });
-
+console.log(error);
   return (
     <div className="SearchResults">
       <h2>Search Results for "{query}"</h2>

@@ -6,17 +6,18 @@ const { signToken } = require('../utils/auth');
 const fetch = require('node-fetch');
 
 
-const searchRecipes = async (query) => {
-  const response = await axios.get(`https://api.spoonacular.com/recipes/complexSearch`, {
-    params: {
-      query,
-      apiKey: process.env.SPOONACULAR_API_KEY,
-    },
-  });
-  return response.data.results;
-};
+// const searchRecipes = async (query) => {
+//   const response = await axios.get(`https://api.spoonacular.com/recipes/complexSearch`, {
+//     params: {
+//       query,
+//       apiKey: process.env.SPOONACULAR_API_KEY,
+//     },
+//   });
+//   return response.data.results;
+// };
 
 const fetchRecipes = async (query) => {
+  console.log('hello')
   const apiKey = process.env.SPOONACULAR_API_KEY;
   const apiUrl = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}`;
 
@@ -50,6 +51,7 @@ const resolvers = {
 
     },
     recipes: async (parent, { query }) => {
+      console.log(query);
       return fetchRecipes(query);
     },
     reviews: async (parent, { recipeId }) => {

@@ -11,20 +11,28 @@ const HomeContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-color: #f8f9fa;
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
+  background-color: #f5f5f5; /* Light background */
+  box-sizing: border-box; /* Ensure padding and border are included in width/height */
 `;
 
 const StyledSearchBar = styled(SearchBar)`
   width: 100%;
   max-width: 600px;
-  margin: 0 1rem;
+  margin: 1rem;
+  background-color: #fff; /* White background for the search bar */
+  border: 1px solid #b03a2e; /* Vintage red border */
+  border-radius: 8px; /* Rounded corners */
+  padding: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 `;
 
 const ProfileInfo = styled.div`
   margin-top: 2rem;
   text-align: center;
   font-size: 1.25rem;
+  color: #b03a2e; /* Vintage red text color */
 `;
 
 const Home = () => {

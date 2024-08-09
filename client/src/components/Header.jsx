@@ -39,7 +39,6 @@ const Header = () => {
       <Heading>Recipe Review Blog</Heading>
       <Nav>
         <Link to="/">Home</Link>
-        <Link to="/search">Search</Link>
         {!loggedIn ? (
           <>
             <Link to="/login">Login</Link>
