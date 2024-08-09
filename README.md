@@ -33,11 +33,13 @@ Welcome to our **Recipe Review Application**, a modern web application that allo
 
 ## Screenshot
 
-![Recipe Review Application Screenshot](./public/screenshot.png) <!-- Ensure you have a screenshot in the public directory -->
+![Recipe Review Application Screenshot](./asset/Project-3-Main.png)
+![SignUp](./asset/Project-3-SignUp.png)
+![Recipe](./asset/Project-3-Recipe.png) <!-- Ensure you have a screenshot in the public directory -->
 
 ## Live Demo
 
-Check out the live application on [Render!](https://your-app-link.onrender.com) <!-- Replace with actual deployment link -->
+Check out the live application on [Render!](https://project-3-recipe-blog-1.onrender.com) <!-- Replace with actual deployment link -->
 
 ## Installation
 
